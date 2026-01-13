@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ingredient;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,12 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'User',
             'role' => 'admin',
             'email' => 'test@example.com',
+        ]);
+
+        Ingredient::factory()->create([
+                'name' => 'steak',
+                'type' => 'beef',
+                'allergy' => 'AGS',
         ]);
     }
 }

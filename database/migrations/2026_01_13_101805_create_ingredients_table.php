@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('allergies');
+            $table->string('allergy');
+            $table->string('type');
             $table->timestamps();
         });
     }
