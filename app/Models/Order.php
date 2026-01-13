@@ -16,6 +16,6 @@ class Order extends Model
     }
     public function dishes()
     {
-        return $this->hasMany(Dish::class)
+        return $this->hasMany(Dish::class,'orders_dishes');
     }
 }
