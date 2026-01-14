@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RedirectController;
+use Illuminate\Support\Facades\Redirect;
 
 class DishController extends Controller
 {
@@ -12,7 +15,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+        return view('dishes.index', compact('dishes'));
     }
 
     /**
@@ -20,7 +24,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $ingredients = Ingredient::all();
+        return view('dishes.create', compact('ingredients'));
     }
 
     /**
@@ -28,7 +33,17 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dish = new Dish();
+        $dish->name = $request->name;
+        $dish->price = $request->price;
+        $dish->category = $request->category;
+        $dish->description = $request->description;
+        $dish->rating = $request->rating;
+        $dish->created_at = $request->created_at;
+        $dish->save();
+
+        $dish->ingredients()->sync($request->ingredients);
+        return Redirect()->route('dishes.index');
     }
 
     /**

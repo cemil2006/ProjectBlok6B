@@ -15,6 +15,6 @@ class Dish extends Model
 
     public function ingredients()
     {
-        return $this ->hasMany(Ingredient::class,'ingredients_dishes');
+        return $this ->belongsToMany(Ingredient::class,'ingredients_dishes');
     }
 }
