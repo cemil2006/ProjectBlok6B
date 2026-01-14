@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IngredientController;
@@ -25,8 +26,18 @@ Route::middleware(['auth'])->group(function () {
 Route::get('ingredients/index', [IngredientController::class, 'index'])->name('ingredients.index');
 Route::get('ingredients/create', [IngredientController::class, 'create'])->name('ingredients.create');
 Route::post('ingredients/store', [IngredientController::class, 'store'])->name('ingredients.store');
-Route::get('ingredients/edit{id}', [IngredientController::class, 'edit'])->name('ingredients.edit');
-Route::put('ingredients/update{id}', [IngredientController::class, 'update'])->name('ingredients.update');
-Route::delete('ingredients/destroy{id}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
+Route::get('ingredients/edit/{id}', [IngredientController::class, 'edit'])->name('ingredients.edit');
+Route::put('ingredients/update/{id}', [IngredientController::class, 'update'])->name('ingredients.update');
+Route::delete('ingredients/destroy/{id}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
+
+
+Route::get('dishes/index', [DishController::class, 'index'])->name('dishes.index');
+Route::get('dishes/show/{id}', [DishController::class, 'show'])->name('dishes.show');
+Route::get('dishes/create', [DishController::class, 'create'])->name('dishes.create');
+Route::post('dishes/store', [DishController::class, 'store'])->name('dishes.store');
+Route::get('dishes/edit/{id}', [DishController::class, 'edit'])->name('dishes.edit');
+Route::put('dishes/update/{id}', [DishController::class, 'update'])->name('dishes.update');
+Route::delete('dishes/destroy/{id}', [DishController::class, 'destroy'])->name('dishes.destroy');
+
 
 require __DIR__ . '/auth.php';

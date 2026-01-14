@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DishStoreRequest;
+use App\Http\Requests\DishUpdateRequest;
 use App\Models\Dish;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class DishController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DishStoreRequest $request)
     {
         $dish = new Dish();
         $dish->name = $request->name;
@@ -49,32 +51,48 @@ class DishController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Dish $dish)
+    public function show($id)
     {
-        //
+        $dish = Dish::findorfail($id);
+        return view('dishes.show', compact('dish'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Dish $dish)
+    public function edit($id)
     {
-        //
+        $ingredients = Ingredient::all();
+        $dish = Dish::findorfail($id);
+        return view('dishes.edit', compact('ingredients', 'dish'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dish $dish)
+    public function update(DishUpdateRequest $request, $id)
     {
-        //
+        $dish = Dish::findorfail($id);
+        $dish->name = $request->name;
+        $dish->price = $request->price;
+        $dish->category = $request->category;
+        $dish->description = $request->description;
+        $dish->rating = $request->rating;
+        $dish->created_at = $request->created_at;
+        $dish->save();
+
+        $dish->ingredients()->sync($request->ingredients);
+        return Redirect()->route('dishes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dish $dish)
+    public function destroy($id)
     {
-        //
+        $dish = Dish::findorfail($id);
+        $dish->ingredients()->detach();
+        $dish->delete();
+        return Redirect()->route('dishes.index');
     }
 }
