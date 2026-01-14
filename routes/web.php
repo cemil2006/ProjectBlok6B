@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IngredientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,5 +22,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-    
-require __DIR__.'/auth.php';
+Route::get('ingredients/index', [IngredientController::class, 'index'])->name('ingredients.index');
+Route::get('ingredients/create', [IngredientController::class, 'create'])->name('ingredients.create');
+Route::post('ingredients/store', [IngredientController::class, 'store'])->name('ingredients.store');
+Route::get('ingredients/edit{id}', [IngredientController::class, 'edit'])->name('ingredients.edit');
+Route::put('ingredients/update{id}', [IngredientController::class, 'update'])->name('ingredients.update');
+Route::delete('ingredients/destroy{id}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
+
+require __DIR__ . '/auth.php';
