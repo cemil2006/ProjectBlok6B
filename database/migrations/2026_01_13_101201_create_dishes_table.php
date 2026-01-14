@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('category');
             $table->string('description');
+            $table->string('rating');
             $table->timestamps();
         });
     }
