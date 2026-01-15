@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+        return view('orders.index', compact('dishes'));
     }
 
     /**
@@ -34,9 +36,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $dish = Dish::findorfail($id);
+        return view('orders.show', compact('dish'));
     }
 
     /**
