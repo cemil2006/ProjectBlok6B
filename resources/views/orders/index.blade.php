@@ -37,7 +37,24 @@
             <button class="filter-btn {{ $category === 'side' ? 'active' : '' }}">Bijgerecht</button>
         </a>
     </div>
-</div>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <p style="font-size: 14px; color: #666; margin-bottom: 10px;"><strong>Filter op Prijs:</strong></p>
+        <form method="GET" style="display: inline;">
+            @if($category)
+                <input type="hidden" name="category" value="{{ $category }}">
+            @endif
+            <select name="max_price" onchange="this.form.submit()" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+                <option value="">-- Alle prijzen --</option>
+                <option value="5" {{ $maxPrice == 5 ? 'selected' : '' }}>Tot €5,00</option>
+                <option value="10" {{ $maxPrice == 10 ? 'selected' : '' }}>Tot €10,00</option>
+                <option value="15" {{ $maxPrice == 15 ? 'selected' : '' }}>Tot €15,00</option>
+                <option value="20" {{ $maxPrice == 20 ? 'selected' : '' }}>Tot €20,00</option>
+                <option value="25" {{ $maxPrice == 25 ? 'selected' : '' }}>Tot €25,00</option>
+            </select>
+        </form>
+    </div>
+
 
 <table border="1" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
     <thead>
