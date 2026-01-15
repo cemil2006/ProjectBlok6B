@@ -14,15 +14,15 @@
         <input type="number" id="price" name="price" value="{{ $dish->price }}" required>
     </div>
 
-     <div style="margin: 15px 0;">
+    <div style="margin: 15px 0;">
         <label for="category">Categorie:</label>
         <select id="category" name="category" required>
             <option value="">-- Selecteer Categorie --</option>
-            <option value="appetizer">Voorgerecht</option>
-            <option value="main">Hoofdgerecht</option>
-            <option value="dessert">Nagerecht</option>
-            <option value="beverage">Drank</option>
-            <option value="side">Bijgerecht</option>
+            <option value="appetizer" {{ $dish->category === 'appetizer' ? 'selected' : '' }}>Voorgerecht</option>
+            <option value="main" {{ $dish->category === 'main' ? 'selected' : '' }}>Hoofdgerecht</option>
+            <option value="dessert" {{ $dish->category === 'dessert' ? 'selected' : '' }}>Nagerecht</option>
+            <option value="beverage" {{ $dish->category === 'beverage' ? 'selected' : '' }}>Drank</option>
+            <option value="side" {{ $dish->category === 'side' ? 'selected' : '' }}>Bijgerecht</option>
         </select>
     </div>
 
@@ -30,7 +30,8 @@
         <label for="ingredients">Ingredienten</label> 
         @foreach($ingredients as $ingredient)
             <div>
-                <input type="checkbox" name="ingredients[]" value="{{ $ingredient->id }}">
+                <input type="checkbox" name="ingredients[]" value="{{ $ingredient->id }}" 
+                {{ $dish->ingredients->contains('id', $ingredient->id) ? 'checked' : '' }}>
                 <label>{{ $ingredient->name }}</label>
             </div>
         @endforeach  

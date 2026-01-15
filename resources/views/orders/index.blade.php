@@ -1,37 +1,40 @@
+<style>
+    .filter-btn {
+        padding: 8px 12px;
+        margin-right: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+    }
+    .filter-btn.active {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+
 <h1>Overzicht Gerechten</h1>
 
 <div style="margin-top: 20px; margin-bottom: 20px;">
     <p style="font-size: 14px; color: #666; margin-bottom: 10px;"><strong>Filter op categorie:</strong></p>
     <div>
         <a href="{{ route('orders.index') }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ !$category ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Alle
-            </button>
+            <button class="filter-btn {{ !$category ? 'active' : '' }}">Alle</button>
         </a>
         <a href="{{ route('orders.index', ['category' => 'appetizer']) }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ $category === 'appetizer' ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Voorgerecht
-            </button>
+            <button class="filter-btn {{ $category === 'appetizer' ? 'active' : '' }}">Voorgerecht</button>
         </a>
         <a href="{{ route('orders.index', ['category' => 'main']) }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ $category === 'main' ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Hoofdgerecht
-            </button>
+            <button class="filter-btn {{ $category === 'main' ? 'active' : '' }}">Hoofdgerecht</button>
         </a>
         <a href="{{ route('orders.index', ['category' => 'dessert']) }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ $category === 'dessert' ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Nagerecht
-            </button>
+            <button class="filter-btn {{ $category === 'dessert' ? 'active' : '' }}">Nagerecht</button>
         </a>
         <a href="{{ route('orders.index', ['category' => 'beverage']) }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ $category === 'beverage' ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Drank
-            </button>
+            <button class="filter-btn {{ $category === 'beverage' ? 'active' : '' }}">Drank</button>
         </a>
         <a href="{{ route('orders.index', ['category' => 'side']) }}">
-            <button style="padding: 8px 12px; margin-right: 5px; {{ $category === 'side' ? 'background-color: #007bff; color: white;' : 'background-color: #f0f0f0;' }} border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
-                Bijgerecht
-            </button>
+            <button class="filter-btn {{ $category === 'side' ? 'active' : '' }}">Bijgerecht</button>
         </a>
     </div>
 </div>
