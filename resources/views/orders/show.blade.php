@@ -36,6 +36,7 @@
     </div>
 
     <div style="margin: 20px 0;">
+        <a href="{{ route('orders.order', $dish->id) }}"><button>Bestel gerecht</button></a>
         <a href="{{ route('orders.index') }}"><button>Terug naar overzicht</button></a>
     </div>
 </div>
