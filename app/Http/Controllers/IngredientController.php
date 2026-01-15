@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\IngredientStoreRequest;
+use App\Http\Requests\IngredientupdateRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
@@ -64,7 +65,7 @@ class IngredientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ingredient $ingredient)
+    public function update(IngredientupdateRequest $request, Ingredient $ingredient)
     {
         $ingredient = new Ingredient();
         $ingredient->name = $request->name;
