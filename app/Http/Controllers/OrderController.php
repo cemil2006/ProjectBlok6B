@@ -11,10 +11,12 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dishes = Dish::all();
-        return view('orders.index', compact('dishes'));
+        $category = $request->query('category');
+        
+        $dishes = $category ? Dish::where('category', $category)->get() : Dish::all();
+        return view('orders.index', compact('dishes', 'category'));
     }
 
     /**
