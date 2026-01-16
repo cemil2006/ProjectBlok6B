@@ -25,7 +25,6 @@
         </select>
     </div>
 
-   
     <div style="margin: 15px 0;">
         <label for="ingredients">Ingredienten</label> 
         @foreach($ingredients as $ingredient)
@@ -35,7 +34,7 @@
             </div>
         @endforeach  
     </div>
-   
+
     <div style="margin: 15px 0;">
         <label for="description">Beschrijving:</label>
         <textarea id="description" name="description" required></textarea>

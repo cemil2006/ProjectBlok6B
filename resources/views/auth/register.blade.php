@@ -10,9 +10,15 @@
                 @csrf
                 <!-- Full Name Input -->
                 <div>
-                    <x-forms.input label="Full Name" name="name" type="text" placeholder="{{ __('Full Name') }}" autofocus />
+                    <x-forms.input label="First name" name="firstname" type="text" placeholder="{{ __('first Name') }}" autofocus />
                 </div>
 
+                <div>
+                    <x-forms.input label="Last name" name="lastname" type="text" placeholder="{{ __('last Name') }}" autofocus />
+                </div>
+                <div>
+                    <x-forms.input label="phonenumber" name="phonenumber" type="text" placeholder="{{ __('phonenumber') }}" autofocus />
+                </div>
                 <!-- Email Input -->
                 <div>
                     <x-forms.input label="Email" name="email" type="email" placeholder="your@email.com" />

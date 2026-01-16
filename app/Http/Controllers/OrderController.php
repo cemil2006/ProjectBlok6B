@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,10 +15,31 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $category = $request->query('category');
-        
-        $dishes = $category ? Dish::where('category', $category)->get() : Dish::all();
-        return view('orders.index', compact('dishes', 'category'));
+        $maxPrice = $request->query('max_price');
+
+        // dump($category);
+
+        $query = Dish::query();
+
+        if ($category) {
+            $query->where('category', $category);
+        }
+
+        if ($maxPrice) {
+            $query->where('price', '<=', $maxPrice * 100);
+        }
+
+        $dishes = $query->get();
+        return view('orders.index', compact('dishes', 'category', 'maxPrice'));
     }
+
+
+    public function indexorder(Request $request)
+    {
+        $orders = Order::all();
+        return view('orders.order', compact('orders' ));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +54,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order();
+        $order -> user_id = Auth::user()->id;
+        $order -> save();
+        $order->dishes()->sync($request->dish);
+        return Redirect()->route('orders.index');
     }
 
     /**
@@ -41,7 +67,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $dish = Dish::findorfail($id);
-        return view('orders.show', compact('dish'));
+        return view('orders.showdish', compact('dish'));
     }
 
     /**
@@ -55,16 +81,19 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+     //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order = Order::findorfail($id);
+        $order->dishes()->detach();
+        $order->delete();
+        return Redirect()->route('orders.order');
     }
 }

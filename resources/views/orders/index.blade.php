@@ -44,6 +44,7 @@
             @if($category)
                 <input type="hidden" name="category" value="{{ $category }}">
             @endif
+            
             <select name="max_price" onchange="this.form.submit()" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
                 <option value="">-- Alle prijzen --</option>
                 <option value="5" {{ $maxPrice == 5 ? 'selected' : '' }}>Tot €5,00</option>
@@ -76,8 +77,12 @@
                 <td style="padding: 10px; border-top: 1px solid #ddd;">{{ substr($dish->ingredients->pluck('allergy')->join(', '), 0, 50) }}{{ strlen($dish->ingredients->pluck('allergy')->join(', ')) > 50 ? '...' : '' }}</td>
                 <td style="padding: 10px; border-top: 1px solid #ddd;">{{ $dish->rating }}/5</td>
                 <td style="padding: 10px; border-top: 1px solid #ddd;">
-                    <a href="{{ route('orders.order', $dish->id) }}"><button>Bestel gerecht</button></a>
-                    <a href="{{ route('orders.show', $dish->id) }}"><button>Details</button></a>
+                    <form action="{{ route('orders.store') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <input type="hidden" name="dish" value="{{ $dish->id }}">
+                        <button type="submit">Bestel gerecht</button>
+                    </form>
+                    <a href="{{ route('orders.showdish', $dish->id) }}"><button>Details</button></a>
                 </td>
             </tr>
         @empty
