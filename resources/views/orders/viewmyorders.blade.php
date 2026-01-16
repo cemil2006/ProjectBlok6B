@@ -28,16 +28,9 @@
                     </form>
     </td>
 
-    <td><form action="{{ route('orders.complete', $order->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Zeker?')">Verwijder</button>
-                    </form>
-    </td>
-
-
+    
     <td>
-    <form action="{{ route('orders.store') }}" method="POST" style="display: inline;">
+       <form action="{{ route('orders.store') }}" method="POST" style="display: inline;">
                         @csrf
                         <input type="hidden" name="dish" value="{{ $dish->id }}">
                         <button type="submit">Bestel gerecht</button>

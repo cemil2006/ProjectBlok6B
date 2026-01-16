@@ -94,6 +94,6 @@ class OrderController extends Controller
         $order = Order::findorfail($id);
         $order->dishes()->detach();
         $order->delete();
-        return Redirect()->route('orders.order');
+        return Redirect()->route('orders.index')->with('success', 'verwijderd!');
     }
 }

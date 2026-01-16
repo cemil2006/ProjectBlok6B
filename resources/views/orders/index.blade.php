@@ -15,6 +15,10 @@
 
 <h1>Overzicht Gerechten</h1>
 
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+
 <div style="margin-top: 20px; margin-bottom: 20px;">
     <p style="font-size: 14px; color: #666; margin-bottom: 10px;"><strong>Filter op categorie:</strong></p>
     <div>
