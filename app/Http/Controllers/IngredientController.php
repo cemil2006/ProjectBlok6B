@@ -6,6 +6,7 @@ use App\Http\Requests\IngredientStoreRequest;
 use App\Http\Requests\IngredientupdateRequest;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use Symfony\Polyfill\Intl\Idn\Idn;
 
 class IngredientController extends Controller
 {
@@ -29,9 +30,9 @@ class IngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(IngredientStoreRequest $request) 
+    public function store(IngredientStoreRequest $request, $id) 
     {
-        $ingredient = new Ingredient();
+        $ingredient = Ingredient::findorfail($id);
         $ingredient->name = $request->name;
         $ingredient->type = $request->type;
         $ingredient->allergy = $request->allergy;
