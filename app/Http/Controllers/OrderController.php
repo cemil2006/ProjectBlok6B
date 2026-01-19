@@ -41,12 +41,12 @@ class OrderController extends Controller
         return view('orders.order', compact('orders' ));
     }
 
-    public function viewmyorders(Request $request)
+    public function isCompleted(Order $order)
     {
-        $orders = Order::all();
-        return view('orders.viewmyorders', compact('orders' ));
-    }
+        $order->is_completed = now();
+        $order->save();
 
+    }
 
     /**
      * Show the form for creating a new resource.

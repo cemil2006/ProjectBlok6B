@@ -30,9 +30,9 @@ class IngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(IngredientStoreRequest $request, $id) 
+    public function store(IngredientStoreRequest $request) 
     {
-        $ingredient = Ingredient::findorfail($id);
+        $ingredient = new Ingredient();
         $ingredient->name = $request->name;
         $ingredient->type = $request->type;
         $ingredient->allergy = $request->allergy;
@@ -54,13 +54,9 @@ class IngredientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Ingredient $ingredient)
     {
-        $ingredient = Ingredient::findorfail($id);
-
-
         return view('ingredients.edit', compact('ingredient'));
-
     }
 
     /**
@@ -68,7 +64,6 @@ class IngredientController extends Controller
      */
     public function update(IngredientupdateRequest $request, Ingredient $ingredient)
     {
-        $ingredient = new Ingredient();
         $ingredient->name = $request->name;
         $ingredient->type = $request->type;
         $ingredient->allergy = $request->allergy;
@@ -82,9 +77,8 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Ingredient $ingredient)
     {
-        $ingredient = Ingredient::findorfail($id);
         $ingredient->delete();
         return Redirect()->route('ingredients.index');
     }

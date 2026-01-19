@@ -27,10 +27,10 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('orders.update', $order->id) }}" method="POST" style="display: inline;">
-                            
-                            <button type="submit" onclick="return confirm('Zeker?')">Complete?</button>
-                        </form>
+                        <form action="{{ route('orders.isCompleted', $order->id) }}" method="POST" style="display: inline;">
+                                @csrf    
+                                <button type="submit" onclick="return confirm('Zeker?')">Complete?</button>
+                            </form>
                     </td>
                     <td>
                         <form action="{{ route('orders.store') }}" method="POST" style="display: inline;">

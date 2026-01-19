@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Auth::user()->orders as $order)
+        @foreach($orders as $order)
             @foreach($order->dishes as $dish)
         <tr>
                         <td>{{ $dish->name }}</td>
@@ -27,8 +27,8 @@
                             </form>
                         </td>
                         <td>
-                            <form action="{{ route('orders.update', $order->id) }}" method="POST" style="display: inline;">
-                                
+                            <form action="{{ route('orders.isCompleted', $order->id) }}" method="POST" style="display: inline;">
+                                @csrf    
                                 <button type="submit" onclick="return confirm('Zeker?')">Complete?</button>
                             </form>
                         </td>

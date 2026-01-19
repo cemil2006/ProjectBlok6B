@@ -4,6 +4,7 @@ use App\Http\Controllers\DishController;
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\MyOrderController;
 use App\Http\Controllers\OrderController;
 use App\Models\Order;
 
@@ -27,29 +28,30 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ingredients/index', [IngredientController::class, 'index'])->name('ingredients.index');
     Route::get('ingredients/create', [IngredientController::class, 'create'])->name('ingredients.create');
     Route::post('ingredients/store', [IngredientController::class, 'store'])->name('ingredients.store');
-    Route::get('ingredients/edit/{id}', [IngredientController::class, 'edit'])->name('ingredients.edit');
-    Route::put('ingredients/update/{id}', [IngredientController::class, 'update'])->name('ingredients.update');
-    Route::delete('ingredients/destroy/{id}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
+    Route::get('ingredients/edit/{ingredient}', [IngredientController::class, 'edit'])->name('ingredients.edit');
+    Route::put('ingredients/update/{ingredient}', [IngredientController::class, 'update'])->name('ingredients.update');
+    Route::delete('ingredients/destroy/{ingredient}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
 
     //Manager
     Route::get('dishes/index', [DishController::class, 'index'])->name('dishes.index');
-    Route::get('dishes/show/{id}', [DishController::class, 'show'])->name('dishes.show');
+    Route::get('dishes/show/{dish}', [DishController::class, 'show'])->name('dishes.show');
     Route::get('dishes/create', [DishController::class, 'create'])->name('dishes.create');
     Route::post('dishes/store', [DishController::class, 'store'])->name('dishes.store');
-    Route::get('dishes/edit/{id}', [DishController::class, 'edit'])->name('dishes.edit');
-    Route::put('dishes/update/{id}', [DishController::class, 'update'])->name('dishes.update');
-    Route::delete('dishes/destroy/{id}', [DishController::class, 'destroy'])->name('dishes.destroy');
+    Route::get('dishes/edit/{dish}', [DishController::class, 'edit'])->name('dishes.edit');
+    Route::put('dishes/update/{dish}', [DishController::class, 'update'])->name('dishes.update');
+    Route::delete('dishes/destroy/{dish}', [DishController::class, 'destroy'])->name('dishes.destroy');
 
     //consument of tewel order
     Route::get('orders/index', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/order', [OrderController::class, 'indexorder'])->name('orders.order');
-    Route::get('orders/showdish/{id}', [OrderController::class, 'show'])->name('orders.showdish');
+    Route::get('orders/showdish/{id}', [OrderController::class, 'show'])->name('orders.showdish'); //dish
     Route::post('orders/store', [OrderController::class, 'store'])->name('orders.store');
-    Route::post('orders/update/{id}', [OrderController::class, 'update'])->name('orders.update');
+    // Route::post('orders/update/{id}', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('orders/destroy/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
-    //my order route
-    Route::get('orders/viewmyorders', [OrderController::class, 'viewmyorders'])->name('orders.viewmyorders');
+    Route::post('orders/isCompleted/{order}', [OrderController::class, 'isCompleted'])->name('orders.isCompleted');
 
+    //my order route
+    Route::get('orders/viewmyorders', [MyOrderController::class, 'show'])->name('orders.viewmyorders');
 });
 require __DIR__ . '/auth.php';

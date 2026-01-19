@@ -33,7 +33,7 @@ class DishController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DishStoreRequest $request)
+    public function store(DishStoreRequest $request, Dish $dish)
     {
         $dish = new Dish();
         $dish->name = $request->name;
@@ -51,9 +51,8 @@ class DishController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Dish $dish)
     {
-        $dish = Dish::findorfail($id);
         return view('dishes.show', compact('dish'));
     }
 
@@ -70,9 +69,8 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(DishUpdateRequest $request, $id)
+    public function update(DishUpdateRequest  $request, Dish $dish)
     {
-        $dish = Dish::findorfail($id);
         $dish->name = $request->name;
         $dish->price = $request->price;
         $dish->category = $request->category;
@@ -88,9 +86,8 @@ class DishController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Dish $dish)
     {
-        $dish = Dish::findorfail($id);
         $dish->ingredients()->detach();
         $dish->delete();
         return Redirect()->route('dishes.index');
