@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderStoreRequest;
 use App\Models\Dish;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,12 @@ class OrderController extends Controller
         return view('orders.order', compact('orders' ));
     }
 
+    public function viewmyorders(Request $request)
+    {
+        $orders = Order::all();
+        return view('orders.viewmyorders', compact('orders' ));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +59,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderStoreRequest $request)
     {
         $order = new Order();
         $order -> user_id = Auth::user()->id;

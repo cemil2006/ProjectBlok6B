@@ -45,7 +45,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders/order', [OrderController::class, 'indexorder'])->name('orders.order');
     Route::get('orders/showdish/{id}', [OrderController::class, 'show'])->name('orders.showdish');
     Route::post('orders/store', [OrderController::class, 'store'])->name('orders.store');
+    Route::post('orders/update/{id}', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('orders/destroy/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+    //my order route
+    Route::get('orders/viewmyorders', [OrderController::class, 'viewmyorders'])->name('orders.viewmyorders');
 
 });
 require __DIR__ . '/auth.php';
