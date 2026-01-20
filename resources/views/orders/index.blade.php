@@ -1,3 +1,4 @@
+<x-base-layout>
 <style>
     .filter-btn {
         padding: 8px 12px;
@@ -14,7 +15,7 @@
 </style>
 
 <h1>Overzicht Gerechten</h1>
-
+<a href="{{ route('orders.viewmyorders') }}"><button>jouw orders</button></a>
 <div class="alert alert-success">
     {{ session('success') }}
 </div>
@@ -98,3 +99,4 @@
         @endforelse
     </tbody>
 </table>
+</x-base-layout>

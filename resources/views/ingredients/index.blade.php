@@ -1,3 +1,4 @@
+<x-base-layout>
 <h1>Ingrediënten</h1>
 
 <a href="{{ route('ingredients.create') }}"><button>Nieuw Ingrediënt</button></a>
@@ -35,3 +36,4 @@
         @endforelse
     </tbody>
 </table>
+</x-base-layout>

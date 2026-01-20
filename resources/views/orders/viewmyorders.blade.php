@@ -1,3 +1,4 @@
+<x-base-layout>
 <h2>Alle Orders</h2>
 
 <table >
@@ -44,3 +45,4 @@
 @endforeach
     </tbody>
 </table>
+</x-base-layout>

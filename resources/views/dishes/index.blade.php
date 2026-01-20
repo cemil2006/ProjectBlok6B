@@ -1,3 +1,4 @@
+<x-base-layout>
 <h1>Gerechten</h1>
 
 <a href="{{ route('dishes.create') }}"><button>Nieuw Gerecht</button></a>
@@ -40,3 +41,4 @@
         @endforelse
     </tbody>
 </table>
+</x-base-layout>

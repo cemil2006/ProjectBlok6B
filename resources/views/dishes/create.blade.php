@@ -1,3 +1,4 @@
+<x-base-layout>
 <h1>Gerecht Toevoegen</h1>
 
 <form action="{{ route('dishes.store') }}" method="POST">
@@ -50,3 +51,4 @@
         <a href="{{ route('dishes.index') ?? '/' }}"><button type="button">Annuleren</button></a>
     </div>
 </form>
+</x-base-layout>

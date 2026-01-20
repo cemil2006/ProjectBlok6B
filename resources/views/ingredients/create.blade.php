@@ -1,4 +1,4 @@
-
+<x-base-layout>
 <h1>Ingrediënt Toevoegen</h1>
 
 <form action="{{ route('ingredients.store') }}" method="POST">
@@ -49,3 +49,4 @@
         <a href="{{ route('ingredients.index') ?? '/' }}"><button type="button">Annuleren</button></a>
     </div>
 </form>
+</x-base-layout>

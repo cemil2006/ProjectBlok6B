@@ -1,3 +1,4 @@
+<x-base-layout>
 <h1>{{ $dish->name }}</h1>
 
 <div style="margin-top: 20px;">
@@ -39,3 +40,4 @@
         <a href="{{ route('orders.index') }}"><button>Terug naar overzicht</button></a>
     </div>
 </div>
+</x-base-layout>
